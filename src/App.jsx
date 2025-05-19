@@ -11,6 +11,7 @@ import Home from './Components/Home/Home'
 import NotFound from './Components/Notfound/Notfound'
 import CounterContextProvider from './Context/CounterContext'
 import UserContextProvider from './Context/UserContext'
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 
 
 function App() {
@@ -19,7 +20,7 @@ const router = createBrowserRouter(
   [
     {
       path: '',element:<Layout/>,children:[
-        {index:true,element:<Home/>},
+        {index:true,element:<ProtectedRoute><Home/></ProtectedRoute>},
         {path:'login',element:<Login/>},
         {path:'Signup',element:<Signup/>},
         {path:'*',element:<NotFound/>}
