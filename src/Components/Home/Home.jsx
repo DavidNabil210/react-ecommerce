@@ -1,8 +1,12 @@
 import React, { useContext } from 'react'
 import { CounterContext } from '../../Context/CounterContext'
+import axios from 'axios';
 export default function Home() {
   const{Counter,ChangeCounter}=useContext(CounterContext);
-
+  async function GetProducts(){
+    const {data}=await axios.get('https://ecommerce.routemisr.com//api/v1/products');
+    console.log(data);
+  }
   return (
 
     <div >

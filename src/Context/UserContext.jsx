@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 export const UserContext=createContext();
 export default function UserContextProvider(props) {
     const [token, settoken] = useState(localStorage.getItem('token'))
-    useEffect
+    
     useEffect(() => {
       if(token){
         localStorage.setItem('token',token);

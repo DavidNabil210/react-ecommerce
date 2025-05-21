@@ -1,15 +1,21 @@
 import React, { useContext, useState } from "react";
 import { CounterContext } from "../../Context/CounterContext";
 import { UserContext } from "../../Context/UserContext";
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate=useNavigate();
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   const value=useContext(CounterContext);
-   const{token}= useContext(UserContext);
+   const{token,settoken}= useContext(UserContext);
+function logout(){
+settoken(null);
+navigate('/login');
+}
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,6 +73,14 @@ const Navbar = () => {
           >
             Login
           </a>
+        </div>
+         }
+         {token && 
+          <div className="hidden md:flex items-center space-x-4">
+          
+          <button  className="text-indigo-600 hover:bg-indigo-50 px-4 py-2 rounded-md text-sm font-medium" onClick={logout}> 
+            Logout
+          </button>
         </div>
          }
 
