@@ -2,19 +2,21 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CounterContext } from '../../Context/CounterContext'
 import axios from 'axios';
 import MainSlider from '../../../components/MainSlider/MainSlider';
+import CategorySlider from '../../../components/CategorySlider/CategorySlider';
+import RecentProducts from '../../../components/RecentProducts/RecentProducts';
 export default function Home() {
   const{Counter,ChangeCounter}=useContext(CounterContext);
   const [Products, setProducts] = useState([]);
-  async function GetProducts(){
-    const {data}= await axios.get("https://ecommerce.routemisr.com/api/v1/products");
-    console.log(data.data);
-    setProducts(data.data);
-  }
-  useEffect(() => {
-    GetProducts();
+  // async function GetProducts(){
+  //   const {data}= await axios.get("https://ecommerce.routemisr.com/api/v1/products");
+  //   console.log(data.data);
+  //   setProducts(data.data);
+  // }
+  // useEffect(() => {
+  //   GetProducts();
   
     
-  }, [])
+  // }, [])
   
   return (
 
@@ -37,7 +39,11 @@ export default function Home() {
 //     </div>
 //   ))}
 // </div>
+ <>
   <MainSlider/>
-    
+  <CategorySlider/>
+  <RecentProducts/>
+
+ </>
   )
 }
