@@ -12,6 +12,7 @@ import NotFound from './Components/Notfound/Notfound'
 import CounterContextProvider from './Context/CounterContext'
 import UserContextProvider from './Context/UserContext'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
+import ProductDetails from './Components/ProductDetails/ProductDetails'
 
 
 function App() {
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       path: '',element:<Layout/>,children:[
         {index:true,element:<ProtectedRoute><Home/></ProtectedRoute>},
         {path:'login',element:<Login/>},
+        {path:'productdetails/:id',element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
         {path:'Signup',element:<Signup/>},
         {path:'*',element:<NotFound/>}
 

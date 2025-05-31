@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ProductItem({ product }) {
   return (
+    
+   <Link to={`/productdetails/${product._id}`}>
     <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-4 flex flex-col items-center text-center">
       <img
         src={product.imageCover}
@@ -13,5 +16,6 @@ export default function ProductItem({ product }) {
       </h2>
       <p className="text-green-600 font-bold">{product.price} EGP</p>
     </div>
+   </Link>
   );
 }
