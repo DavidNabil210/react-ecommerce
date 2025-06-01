@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CounterContext } from '../../Context/CounterContext'
 import axios from 'axios';
 import MainSlider from '../MainSlider/MainSlider';
-import CategorySlider from '../CategorySlider/CategorySlider';
 import RecentProducts from '../RecentProducts/RecentProducts';
+import CategorySlider from '../CategorySlider/CategorySlider';
 export default function Home() {
   const{Counter,ChangeCounter}=useContext(CounterContext);
   const [Products, setProducts] = useState([]);
@@ -40,9 +40,11 @@ export default function Home() {
 //   ))}
 // </div>
  <>
-  <MainSlider/>
+  <div className=" mx-10">
+    <MainSlider/>
   <CategorySlider/>
   <RecentProducts/>
+  </div>
 
  </>
   )

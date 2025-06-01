@@ -7,7 +7,7 @@ export default function ProductDetails() {
     const [Product, setProduct] = useState(null)
     async function GetProduct() {
          const {data}= await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
-         console.log(data.data);
+        //  console.log(data.data);
          setProduct(data.data);
     }
     useEffect(() => {
@@ -36,6 +36,10 @@ export default function ProductDetails() {
           <h2 className="text-xl font-semibold">{Product.title}</h2>
           <p className="text-gray-700">{Product.description}</p>
           <p className="text-lg font-bold text-green-600">Price: {Product.price} EGP</p>
+          <button class="bg-blue-500 grid lg:grid-cols-12  text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+  Add to cart
+</button>
+
         </div>
       </div>
     ) : (
