@@ -13,10 +13,11 @@ import CounterContextProvider from './Context/CounterContext'
 import UserContextProvider from './Context/UserContext'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import ProductDetails from './Components/ProductDetails/ProductDetails'
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
   const [count, setCount] = useState(0)
+  const queryClient = new QueryClient();
 const router = createBrowserRouter(
   [
     {
@@ -33,11 +34,14 @@ const router = createBrowserRouter(
 )
   return (
     <>
-    <UserContextProvider>
-    <CounterContextProvider>
-    <RouterProvider router={router}></RouterProvider>
-    </CounterContextProvider>
-    </UserContextProvider>
+    <QueryClientProvider client={queryClient}>
+       <UserContextProvider>
+        <CounterContextProvider>
+          <RouterProvider router={router}></RouterProvider>
+        </CounterContextProvider>
+       </UserContextProvider>
+    </QueryClientProvider>
+   
    
    
   {/* <Signup/> */}
