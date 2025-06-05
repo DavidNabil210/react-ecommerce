@@ -22,7 +22,7 @@ const MainSlider = () => {
 <div className="main-slider overflow-hidden my-10">
   <div className="container mx-auto px-4">
     <div className="grid grid-cols-12 ">
-      
+                      
       <div className="col-span-12 md:col-span-4 flex flex-col ">
         <img 
           src={staticImage1} 

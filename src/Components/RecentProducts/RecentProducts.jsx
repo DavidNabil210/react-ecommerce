@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import ProductItem from '../ProductItem/ProductItem';
 import { useQuery } from '@tanstack/react-query';
+import LoadingSpinner from '../Loadingspinner/LoadingSpinner';
 
 export default function RecentProducts() {
   function GetProducts() {
@@ -19,7 +20,7 @@ export default function RecentProducts() {
     queryFn: GetProducts,
   });
 
-  if (isLoading || isFetching) return <p>Loading...</p>;
+  if (isLoading || isFetching) return <LoadingSpinner/>;
   if (isError) return <p>Error: {error.message}</p>;
 
   const products = data?.data?.data || []; // ← Important: Safely access products list
