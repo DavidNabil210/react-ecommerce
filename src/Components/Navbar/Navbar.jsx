@@ -37,10 +37,10 @@ navigate('/login');
                 Home
               </a>
               <a
-                href="/about"
+                href="/Products"
                 className="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
               >
-                About
+                Products
               </a>
               <a
                 href="/services"
@@ -131,10 +131,10 @@ navigate('/login');
               Home
             </a>
             <a
-              href="/about"
+              href="/Products"
               className="block text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-base font-medium"
             >
-              About
+              Products
             </a>
             <a
               href="/services"

@@ -14,6 +14,7 @@ import UserContextProvider from './Context/UserContext'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import ProductDetails from './Components/ProductDetails/ProductDetails'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Products from './Components/Products/Products'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
         {path:'login',element:<Login/>},
         {path:'productdetails/:id',element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
         {path:'Signup',element:<Signup/>},
+        {path:'Products',element:<ProtectedRoute> <Products/></ProtectedRoute>},
         {path:'*',element:<NotFound/>}
 
       ]
