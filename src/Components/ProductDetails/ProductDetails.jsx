@@ -26,7 +26,7 @@ export default function ProductDetails() {
     isLoading,
     isFetching
   } = useQuery({
-    queryKey: ['recentProduct'],
+    queryKey: ['recentProduct',id],
     queryFn: GetProduct,
   });
 
@@ -36,31 +36,36 @@ export default function ProductDetails() {
   const Product = data?.data?.data || [];
     
   return (
-  <>
-    <h1 className="text-2xl font-bold mb-4 text-center">Product Details</h1>
+<>
+  <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Product Details</h1>
 
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-4 items-start">
-      
-        <div className="md:col-span-4">
-          <img
-            src={Product.imageCover}
-            alt={Product.title}
-            className="w-full h-auto rounded-lg shadow-md"
-          />
-        </div>
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 px-6 py-4 items-start bg-white rounded-lg shadow-lg max-w-6xl mx-auto">
+    
+    {/* Product Image */}
+    <div className="md:col-span-5">
+      <img
+        src={Product.imageCover}
+        alt={Product.title}
+        className="w-full h-auto rounded-xl shadow-sm object-cover"
+      />
+    </div>
 
-       
-        <div className="md:col-span-8 space-y-4">
-          <h2 className="text-xl font-semibold">{Product.title}</h2>
-          <p className="text-gray-700">{Product.description}</p>
-          <p className="text-lg font-bold text-green-600">Price: {Product.price} EGP</p>
-          <button class="bg-blue-500 grid lg:grid-cols-12  text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
-  Add to cart
-</button>
+    {/* Product Info */}
+    <div className="md:col-span-7 space-y-5">
+      <h2 className="text-2xl font-semibold text-gray-900">{Product.title}</h2>
+      <p className="text-gray-700 text-base leading-relaxed">{Product.description}</p>
+      <p className="text-xl font-bold text-green-600">Price: {Product.price} EGP</p>
 
-        </div>
-      </div>
-  </>
+      <button
+        className="bg-blue-600 text-white text-base px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      >
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</>
+
+
 );
 
 }
