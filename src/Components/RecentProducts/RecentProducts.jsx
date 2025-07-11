@@ -20,7 +20,7 @@ export default function RecentProducts() {
     queryFn: GetProducts,
   });
 
-  if (isLoading || isFetching) return <LoadingSpinner/>;
+  if (isLoading ) return <LoadingSpinner/>;
   if (isError) return <p>Error: {error.message}</p>;
 
   const products = data?.data?.data || []; // ← Important: Safely access products list

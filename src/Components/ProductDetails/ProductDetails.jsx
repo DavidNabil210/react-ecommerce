@@ -30,7 +30,7 @@ export default function ProductDetails() {
     queryFn: GetProduct,
   });
 
-  if (isLoading || isFetching) return <p>Loading...</p>;
+  if (isLoading ) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
 
   const Product = data?.data?.data || [];
