@@ -15,6 +15,7 @@ import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import ProductDetails from './Components/ProductDetails/ProductDetails'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Products from './Components/Products/Products'
+import CartContextProvider from './Context/CartContext'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -38,9 +39,11 @@ const router = createBrowserRouter(
     <>
     <QueryClientProvider client={queryClient}>
        <UserContextProvider>
-        <CounterContextProvider>
+       <CartContextProvider>
+         <CounterContextProvider>
           <RouterProvider router={router}></RouterProvider>
         </CounterContextProvider>
+       </CartContextProvider>
        </UserContextProvider>
     </QueryClientProvider>
    

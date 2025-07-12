@@ -16,7 +16,7 @@ export default function RecentProducts() {
     isLoading,
     isFetching
   } = useQuery({
-    queryKey: ['recentProducts'],
+    queryKey: ['products'],
     queryFn: GetProducts,
   });
 
