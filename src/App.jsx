@@ -16,6 +16,7 @@ import ProductDetails from './Components/ProductDetails/ProductDetails'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Products from './Components/Products/Products'
 import CartContextProvider from './Context/CartContext'
+import Cart from './Components/Cart/Cart'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
         {path:'productdetails/:id',element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
         {path:'signup',element:<Signup/>},
         {path:'products',element:<ProtectedRoute> <Products/></ProtectedRoute>},
+        {path:'cart',element:<ProtectedRoute> <Cart/></ProtectedRoute>},
         {path:'*',element:<NotFound/>}
 
       ]

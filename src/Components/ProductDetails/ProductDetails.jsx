@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query';
+import { CartContext } from '../../Context/CartContext';
 export default function ProductDetails() {
     const{id}=useParams();
     // const [Product, setProduct] = useState(null)
@@ -15,6 +16,11 @@ export default function ProductDetails() {
     
      
     // }, [])
+   let {AddToCart}= useContext(CartContext);
+    async  function AddProduct(productId){
+      let x=await AddToCart(productId);
+      console.log(x);
+    }
     function GetProduct() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
   }
@@ -58,6 +64,8 @@ export default function ProductDetails() {
 
       <button
         className="bg-blue-600 text-white text-base px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        onClick={() => AddProduct(Product._id)}
+
       >
         Add to Cart
       </button>
