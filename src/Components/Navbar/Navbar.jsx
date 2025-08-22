@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { CounterContext } from "../../Context/CounterContext";
 import { UserContext } from "../../Context/UserContext";
 import { useNavigate, Link } from "react-router-dom";
-
+import { HiOutlineShoppingCart } from "react-icons/hi"; // or any other icon
+import { CiShoppingCart } from "react-icons/ci";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -25,7 +26,8 @@ const Navbar = () => {
           <div className="flex items-center">
             {/* Logo */}
             <Link to="/" className="text-xl font-bold text-indigo-600">
-              MyLogo
+            <CiShoppingCart className=" text-3xl" />
+              FreshCart
             </Link>
 
             {/* Navigation Links (Desktop) */}
@@ -57,8 +59,9 @@ const Navbar = () => {
                 </Link>
                  <Link
                   to="/cart"
-                  className="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className=" flex text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
+                  <HiOutlineShoppingCart className=" text-lg" />
                   Cart
                 </Link>
               </div>

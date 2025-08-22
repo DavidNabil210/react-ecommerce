@@ -17,6 +17,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Products from './Components/Products/Products'
 import CartContextProvider from './Context/CartContext'
 import Cart from './Components/Cart/Cart'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -47,6 +48,7 @@ const router = createBrowserRouter(
         </CounterContextProvider>
        </CartContextProvider>
        </UserContextProvider>
+       <Toaster/>
     </QueryClientProvider>
    
    

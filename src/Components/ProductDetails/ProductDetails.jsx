@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query';
 import { CartContext } from '../../Context/CartContext';
+import toast from 'react-hot-toast';
 export default function ProductDetails() {
     const{id}=useParams();
     // const [Product, setProduct] = useState(null)
@@ -19,7 +20,8 @@ export default function ProductDetails() {
    let {AddToCart}= useContext(CartContext);
     async  function AddProduct(productId){
       let x=await AddToCart(productId);
-      console.log(x);
+      toast.success('added');
+      // console.log(x);
     }
     function GetProduct() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);

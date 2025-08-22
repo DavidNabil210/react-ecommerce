@@ -10,7 +10,7 @@ export default function CartContextProvider(props) {
   };
   function AddToCart(productId){
     return axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,{
-      productId:productId
+          productId:productId
 
     },
   {
@@ -28,10 +28,19 @@ function GetUserCart() {
       return null; 
     });
 }
+function UpdateCountQty(id,count){
+  return axios
+  .put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
+    {count:count,},
+    {headers:headers,}
+  )
+  .then((data)=>data)
+  .catch((err)=>err);
+}
 
 
   return (
-    <CartContext.Provider value={{ GetUserCart, AddToCart }}>
+    <CartContext.Provider value={{ GetUserCart, AddToCart,UpdateCountQty }}>
 
       {props.children}
     </CartContext.Provider>

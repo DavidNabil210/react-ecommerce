@@ -1,18 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../Context/CartContext';
 import CartItem from '../CartItem/CartItem';
-
+import LoadingSpinner from '../Loadingspinner/LoadingSpinner'
 export default function Cart() {
-  const { GetUserCart } = useContext(CartContext);
+  const { GetUserCart,UpdateCountQty } = useContext(CartContext);
   const [CartDetails, setCartDetails] = useState(null);
-
+  
   async function GetLoggedUser() {
     const response = await GetUserCart();
     if (response.data.status === 'success') {
       setCartDetails(response.data.data);
     }
   }
-
+  async function UpdateQuantity(id, count) {
+  console.log('UpdateQuantity called with:', { id, count }); // Debug log
+  
+  try {
+    const response = await UpdateCountQty(id, count);
+    console.log('API response:', response); // Debug log
+    
+    if (response.data.status === 'success') {
+      setCartDetails(response.data.data);
+      console.log('Cart updated successfully'); // Debug log
+    } else {
+      console.error('Failed to update cart:', response.data);
+    }
+  } catch (error) {
+    console.error('Error updating quantity:', error);
+  }
+}
   useEffect(() => {
     GetLoggedUser();
   }, []);
@@ -37,13 +53,18 @@ export default function Cart() {
         <tbody>
           {
             CartDetails === null ? (
-              <tr>
-                <td colSpan="5" className="text-center py-4">Loading...</td>
-              </tr>
+            <tr className="text-center">
+  <td colSpan={4}>
+    <LoadingSpinner />
+  </td>
+</tr>
+
             ) : CartDetails.products?.length > 0 ? (
               CartDetails.products.map((p) => (
                 <CartItem
-                  key={p._id || p.product._id}
+                  // key={p._id || p.product._id}
+                   key={p.product._id}
+                  UpdateQuantity={UpdateQuantity}
                   count={p.count}
                   price={p.price}
                   product={p.product}
