@@ -17,11 +17,16 @@ export default function ProductDetails() {
     
      
     // }, [])
-   let {AddToCart}= useContext(CartContext);
+   let {AddToCart,setCartItems}= useContext(CartContext);
+   
     async  function AddProduct(productId){
       let x=await AddToCart(productId);
-      toast.success('added');
-      // console.log(x);
+
+     
+      if(x.data.status=="success"){
+        setCartItems(x.data.numOfCartItems);
+         toast.success('added');
+      }
     }
     function GetProduct() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
