@@ -18,6 +18,7 @@ import Products from './Components/Products/Products'
 import CartContextProvider from './Context/CartContext'
 import Cart from './Components/Cart/Cart'
 import { Toaster } from 'react-hot-toast'
+import Checkout from './Components/Checkout/Checkout'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
         {path:'productdetails/:id',element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
         {path:'signup',element:<Signup/>},
         {path:'products',element:<ProtectedRoute> <Products/></ProtectedRoute>},
+        {path:'Checkout',element:<ProtectedRoute> <Checkout/></ProtectedRoute>},
         {path:'cart',element:<ProtectedRoute> <Cart/></ProtectedRoute>},
         {path:'*',element:<NotFound/>}
 
