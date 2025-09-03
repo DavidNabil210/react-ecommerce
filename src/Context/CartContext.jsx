@@ -7,10 +7,9 @@ export default function CartContextProvider(props) {
   const token = localStorage.getItem("token");
   const headers = { token };
 
-  // هنخزن إجمالي الكمية فقط (تقدر كمان تخزن الـproducts لو حابب)
   const [totalQty, setTotalQty] = useState(0);
 
-  // helper لحساب إجمالي الكميات من الـAPI
+  // calculating total quantity 
   function calcTotalQty(cartData) {
     const products = cartData?.products || [];
     return products.reduce((sum, item) => sum + (item?.count || 0), 0);
@@ -43,7 +42,7 @@ export default function CartContextProvider(props) {
     }
   }
 
-  // مهم: بعد أي إضافة/تحديث، اعمل Refresh للكارت كامل وما تعتمدش على numOfCartItems
+  
   async function AddToCart(productId) {
     try {
       const res = await axios.post(
@@ -51,7 +50,6 @@ export default function CartContextProvider(props) {
         { productId },
         { headers }
       );
-      // بغض النظر عن اللي راجع… اعمل Fetch للكارت كامل عشان الإجمالي يبقى مظبوط
       await GetCart();
       return res;
     } catch (e) {
@@ -75,10 +73,9 @@ export default function CartContextProvider(props) {
     }
   }
 
-  // أول ما الـtoken يبقى موجود/يتغير → هات الكارت
   useEffect(() => {
     if (token) GetCart();
-  }, [token]); // مهم تبقى متتبّعة للـtoken
+  }, [token]); 
 
   return (
     <CartContext.Provider
@@ -87,7 +84,7 @@ export default function CartContextProvider(props) {
         AddToCart,
         UpdateCountQty,
         GetCart,
-        totalQty,        // استخدم ده في الـNavbar
+        totalQty,        
         setTotalQty,
       }}
     >
