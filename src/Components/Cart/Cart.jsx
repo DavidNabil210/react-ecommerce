@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../Context/CartContext';
 import CartItem from '../CartItem/CartItem';
 import LoadingSpinner from '../Loadingspinner/LoadingSpinner'
+import { Link } from 'react-router-dom';
 export default function Cart() {
-  const { GetUserCart,UpdateCountQty } = useContext(CartContext);
+  const { GetUserCart,UpdateCountQty,totalPrice } = useContext(CartContext);
   const [CartDetails, setCartDetails] = useState(null);
   
   async function GetLoggedUser() {
@@ -37,13 +38,7 @@ export default function Cart() {
   console.log("CartDetails", CartDetails);
   console.log("Products", CartDetails?.products);
   console.log("Length", CartDetails?.products?.length);
-function getTotalPrice() {
-  if (!CartDetails?.products) return 0;
-  return CartDetails.products.reduce(
-    (sum, item) => sum + item.count * item.price,
-    0
-  );
-}
+
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-10">
@@ -86,9 +81,19 @@ function getTotalPrice() {
         </tbody>
       </table>
       <div className="flex justify-end items-center px-6 py-4">
-  <h2 className="text-lg font-semibold">
-    Total: ${getTotalPrice().toFixed(2)}
+      
+      <div className='flex justify-between items-center '>
+          <h2 className="text-lg font-semibold">
+    {/* Total: ${getTotalPrice().toFixed(2)} */}
+    Total : ${totalPrice.toFixed(2)}
   </h2>
+{CartDetails ? (
+  <Link to={'/checkout/' + CartDetails?._id}>
+    checkout
+  </Link>
+) : null}
+      </div>
+
 </div>
 
     </div>

@@ -8,7 +8,7 @@ export default function CartContextProvider(props) {
   const headers = { token };
 
   const [totalQty, setTotalQty] = useState(0);
-
+  const [totalPrice, settotalPrice] = useState(0)
   // calculating total quantity 
   function calcTotalQty(cartData) {
     const products = cartData?.products || [];
@@ -29,10 +29,12 @@ export default function CartContextProvider(props) {
     try {
       const response = await GetUserCart();
       if (response?.data?.status === "success") {
-        const total = calcTotalQty(response.data.data);
-        setTotalQty(total);
+       const cartData =response.data.data;
+        setTotalQty(calcTotalQty(cartData));
+      settotalPrice(calcTotalPrice(cartData));
       } else {
         setTotalQty(0);
+        settotalPrice(0);
       }
       return response;
     } catch (e) {
@@ -73,6 +75,18 @@ export default function CartContextProvider(props) {
     }
   }
 
+  function calcTotalPrice(cartData){
+    const products=cartData?.products || [];
+    return products.reduce((sum, item) => sum + (item?.count || 0) * (item?.price || 0), 0);
+  }
+  function CheckOutSession(CartID,shippingAddress){
+    return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${CartID}?url=http://localhost:5173`,
+      {"shippingAddress":shippingAddress},
+      {
+        headers:headers
+      }
+    )
+  }
   useEffect(() => {
     if (token) GetCart();
   }, [token]); 
@@ -84,8 +98,10 @@ export default function CartContextProvider(props) {
         AddToCart,
         UpdateCountQty,
         GetCart,
-        totalQty,        
+        totalQty,    
+        totalPrice,    
         setTotalQty,
+        CheckOutSession,
       }}
     >
       {props.children}

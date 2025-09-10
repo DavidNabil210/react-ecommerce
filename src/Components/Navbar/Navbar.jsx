@@ -8,7 +8,7 @@ import { CartContext } from "../../Context/CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { totalQty } = useContext(CartContext); // ← هنا
+  const { totalQty } = useContext(CartContext); 
   const navigate = useNavigate();
   const toggleMenu = () => setIsOpen(!isOpen);
   const value = useContext(CounterContext);

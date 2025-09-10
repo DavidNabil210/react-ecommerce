@@ -32,7 +32,7 @@ const router = createBrowserRouter(
         {path:'productdetails/:id',element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
         {path:'signup',element:<Signup/>},
         {path:'products',element:<ProtectedRoute> <Products/></ProtectedRoute>},
-        {path:'Checkout',element:<ProtectedRoute> <Checkout/></ProtectedRoute>},
+        {path:'Checkout/:CartID',element:<ProtectedRoute> <Checkout/></ProtectedRoute>},
         {path:'cart',element:<ProtectedRoute> <Cart/></ProtectedRoute>},
         {path:'*',element:<NotFound/>}
 

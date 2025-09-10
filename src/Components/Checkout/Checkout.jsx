@@ -1,21 +1,28 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useContext } from "react";
 import * as Yup from "yup";
+import { CartContext } from "../../Context/CartContext";
+import { useParams } from "react-router-dom";
 
 export default function Checkout() {
+  const {CartID}=useParams();
   const initialValues = {
     fullName: "",
     email: "",
     address: "",
   };
-
+  const {CheckOutSession}=useContext(CartContext);
   const validationSchema = Yup.object({
     fullName: Yup.string().required("Full name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
     address: Yup.string().required("Address is required"),
   });
 
-  const handleSubmit = (values) => {
+async  function handleSubmit  (values)  {
+   const response= await CheckOutSession(CartID,values)
     console.log("Checkout Data:", values);
+  console.log(response.data.session.url);
+  window.location.href=response.data.session.url;
   };
 
   return (
